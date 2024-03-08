@@ -15,6 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+# DEBUGGING
+# from django.conf import settings
+# print(f"Timzone: {settings.TIME_ZONE}")
+# DEBUGGING END
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("blog.urls"))
