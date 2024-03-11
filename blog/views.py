@@ -15,8 +15,7 @@ logger = logging.getLogger(__name__)
 # @vary_on_cookie # @vary_on_headers("Cookies")
 # @cache_page(300)
 def index(request):
-    posts = Post.objects.filter(published_at__lte=timezone.now())
-    logger.debug("Got %d posts", len(posts))
+    posts = Post.objects.filter(published_at__lte=timezone.now()).select_related("author")
     return render(request, "blog/index.html", {"posts": posts})
 
 def post_detail(request, slug):

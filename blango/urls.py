@@ -13,16 +13,27 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+import debug_toolbar
 
 # DEBUGGING
 # from django.conf import settings
 # print(f"Timzone: {settings.TIME_ZONE}")
 # DEBUGGING END
 
+## IP GETTING
+def get_ip(request):
+  from django.http import HttpResponse
+  return HttpResponse(request.META["REMOTE_ADDR"])
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("blog.urls"))
+    path("", include("blog.urls")),
+    path("ip/", get_ip)
 ]
+
+if settings.DEBUG:
+  urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
