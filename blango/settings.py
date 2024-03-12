@@ -51,6 +51,7 @@ class Dev(Configuration):
         "debug_toolbar",
         "crispy_forms",
         "crispy_bootstrap5",
+        "django_registration",
         "blog",
         "blango_auth",
     ]
@@ -90,6 +91,9 @@ class Dev(Configuration):
 
     WSGI_APPLICATION = 'blango.wsgi.application'
 
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+    ACCOUNT_ACTIVATION_DAYS = 7
 
     # Database
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

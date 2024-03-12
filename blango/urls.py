@@ -17,6 +17,9 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 import debug_toolbar
+from blango_auth.views import profile
+from django_registration.backends.activation.views import RegistrationView
+from blango_auth.forms import BlangoRegistrationForm
 
 # DEBUGGING
 # from django.conf import settings
@@ -32,6 +35,14 @@ def get_ip(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("blog.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/profile/", profile, name="profile"),
+    path(
+        "accounts/register/",
+        RegistrationView.as_view(form_class=BlangoRegistrationForm),
+        name="django_registration_register",
+    ),
+    path("accounts/", include("django_registration.backends.activation.urls")),
     path("ip/", get_ip)
 ]
 
