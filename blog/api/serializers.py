@@ -31,7 +31,7 @@ class CommentSerializer(serializers.ModelSerializer):
     fields = ["id", "creator", "content", "modified_at", "created_at"]
     read_only_fields = ["modified_at", "created_at"]
 
-class PostDetailSerializer(serializers.ModelSerializer):
+class PostDetailSerializer(PostSerializer):
   comments = CommentSerializer(many=True)
 
   def update(self, instance, validated_data):

@@ -61,6 +61,7 @@ class Dev(Configuration):
         "rest_framework.authtoken",
         "blog",
         "blango_auth",
+        "drf_yasg",
     ]
 
     SITE_ID = 1
@@ -210,6 +211,13 @@ class Dev(Configuration):
             "handlers": ["console"],
             "level": "DEBUG",
         }
+    }
+
+    SWAGGER_SETTINGS = {
+      "SECURITY_DEFINITIONS": {
+        "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
+        "Basic": {"type": "basic"}
+      }
     }
 
 class Prod(Dev):
