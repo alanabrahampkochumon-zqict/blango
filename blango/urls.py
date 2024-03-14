@@ -21,7 +21,7 @@ from blango_auth.views import profile
 from django_registration.backends.activation.views import RegistrationView
 from blango_auth.forms import BlangoRegistrationForm
 from rest_framework.authtoken import views
-
+import blog.views
 from django.conf.urls.static import static
 
 # DEBUGGING
@@ -37,6 +37,7 @@ def get_ip(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("post-table/", blog.views.post_table, name="blog-post-table"),
     path("", include("blog.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/profile/", profile, name="profile"),
