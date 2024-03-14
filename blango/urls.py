@@ -20,6 +20,7 @@ import debug_toolbar
 from blango_auth.views import profile
 from django_registration.backends.activation.views import RegistrationView
 from blango_auth.forms import BlangoRegistrationForm
+from rest_framework.authtoken import views
 
 # DEBUGGING
 # from django.conf import settings
@@ -45,6 +46,7 @@ urlpatterns = [
     path("accounts/", include("django_registration.backends.activation.urls")),
     path("accounts/", include("allauth.urls")),
     path("api/v1/", include("blog.api.urls")),
+    path("api/v1/token-auth/", views.obtain_auth_token),
     path("ip/", get_ip)
 ]
 
