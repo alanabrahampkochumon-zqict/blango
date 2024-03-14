@@ -63,7 +63,11 @@ class Dev(Configuration):
         "blango_auth",
         "drf_yasg",
         "django_filters",
+        "versatileimagefield"
     ]
+
+    MEDIA_ROOT = BASE_DIR / "media"
+    MEDIA_URL = "/media/"
 
     SITE_ID = 1
 
